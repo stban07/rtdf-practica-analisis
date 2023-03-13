@@ -1,0 +1,175 @@
+.page-wrapper{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+main{
+    justify-content: center;
+    width: 730px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.titulo{
+    text-align: center;
+}
+
+.section1{
+    background-color: rgba(0, 0, 0, 0.308);
+    padding: 10px 10px 10px 10px;
+    border-radius: 8px;
+}
+tr {
+    display: flex;
+}
+
+.carta{
+    font-weight: bold;
+    font-size: 25px;
+    color: #000000;
+    width: 100px;
+    height: 100px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.section2{
+    background-color: rgba(56, 53, 53, 0.425);
+    border-radius: 8px ;
+    width: 250px;
+    height: 450px;
+    padding: 0 20px;
+}
+.section2 h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.estadisticas{
+    border: 1px solid white;
+    height: 105px;
+    border-radius: 8px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+}
+
+.boton-restart{
+    margin-top: 5px;
+    border-radius: 5px;
+    float: right;
+    background-color: rgb(37, 45, 158);
+}
+@media (max-width: 800px){
+    .page-wrapper{
+        justify-content: center;
+    }
+    .section2{
+        display: inline-flex;
+        width: 700px;
+        height: fit-content;
+        padding: 5px 5px;
+    }
+
+    .boton-restart{
+        width: 110px;
+        margin:15px ;
+        height: 80px;
+    }
+    .btn-carga button{
+        width: 150px;
+        justify-content: center;
+    }
+}
+
+
+
+
+/* ESTILO CARGA DE IMAGENES */
+.caja{
+    height: 500px;
+}
+.drop-area{
+    border: 5px dashed #ddd;
+    height: 350px;
+    min-width: 450px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.drop-area.active{
+    background-color: #b8d4fe;
+    color: black;
+    border: 2px dashed #618ac9;
+}
+.drop-area h2{
+    font-size: 30px;
+    font-weight: 500;
+    color: #000;
+}
+
+.drop-area span{
+    font-size: 25px;
+    color: #000;
+    margin: 20px;
+    font-weight: 500;
+}
+.drop-area button{
+    padding: 10px 25px;
+    font-size: 20px;
+    border: 0;
+    outline: none;
+    background-color: #5256ad;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: solid 1px #ddd;
+}
+
+#preview{
+    margin-top: 10px;
+}
+.caja{
+    margin: auto;
+    max-width: 100%;
+}
+.file-container{
+    padding: 0;
+    max-width: auto;
+    display: inline-flex;
+}
+.miniatura{ 
+    height: 18vh;
+    max-width: auto;
+    /* border: 1px solid; */
+}
+
+.modal-footer{
+    position: relative;
+    margin-top: 5px;
+}
+
+.status-text{
+    padding: 0 10px;
+}
+.success{
+    color: #52ad5a; 
+}
+.failure{
+    color: #ff0000;
+}
+
+

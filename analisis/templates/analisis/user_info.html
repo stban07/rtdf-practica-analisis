@@ -1,0 +1,28 @@
+{% extends "analisis/base.html" %}
+{% load static%}
+
+{% block content %}
+    <h1 style="color: white;">Paciente {{ user }}</h1>
+    <input id='user' value={{user}} type="hidden";>
+    <select id='audio-select' onchange='actualizar_audio()'>
+        {%for row in audio_list %}
+        <option value={{row.id}}>audio {{row.nombre_archivo}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <div id="audio_info">
+        <audio controls>
+            <source src={{ audio }} type="audio/wav">
+        </audio>
+        <div class="col-lg-*">
+            {% for key,value in args.items %}
+                <p style="color: white;">{{ key }} = {{ value }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'app/js/jquery.min.js' %}?1"></script>
+    <script src="{% static 'app/js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'analisis/js/ajax_audio.js' %}"></script>
+{% endblock js %}

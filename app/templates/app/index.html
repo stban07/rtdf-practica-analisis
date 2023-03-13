@@ -1,0 +1,369 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+{% block css%}
+
+{% endblock %}
+{% block contenido %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/index.css' %}">
+
+            {% if user_type == 'Paciente' %}
+            <div id="banner-wrapper">
+                <div id="banner" class="box container">
+                    <div class="row">
+                        <div class="col-7 col-12-medium">
+                            <h2>Hola!, Bienvenido a tú terapia Online</h2>
+                            <p>Jamás fue tan Sencilla, entretenida y comoda. <br> Todo esto y mas sin salir de tu hogar</p>
+                        </div>
+                        <div class="col-5 col-12-medium">
+                            <img class="image fit" src="static/app/recursos/img/imagen-banner.jpg" alt="imagen-banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {%  elif request.user.is_superuser%}
+            <div id="banner-wrapper">
+                <div id="banner" class="box container">
+                    <div class="row">
+                        <div class="col-12 col-12-medium">
+                            <h2>Hola!, Bienvenido {{request.user.username}}</h2>
+                            <p>Registra y Supervisas a los usuarios del sistema <br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+<div class="container" style="margin-top:3rem;">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Usuarios</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Pacientes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Profesionales Salud</button>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    
+
+
+
+
+                    <table class="table" >
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Rut</th>
+                            <th scope="col">Tipo Usuario</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                             {% for i in usuarios %}        
+                            
+                          <tr id={{i}}>
+                            <th value={{i.id}}>{{i.id}}</th>
+                            <td value={{i.username}}>{{i.username}}</td>
+                            <td value={{i.email}}>{{i.email}}</td>
+                            <td value={{i.rut}}>{{i.rut}}</td> 
+                            <td value={{i.id_tipo_user}}>{{i.id_tipo_user}}</td>
+                            <td value={{i.I}}>{{i.I}}</td>
+                            <td value={{i.Comentario}}>{{i.Comentario}}</td>
+                          </tr>
+                              {% endfor %} 
+                        </tbody>
+                    </table>
+                
+
+
+
+
+                    
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+
+
+
+
+
+                    <table class="table" >
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Diabetes</th>
+                            <th scope="col">Hipertencion</th>
+                            <th scope="col">Telegram</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                             {% for i in paciente %}        
+                            
+                          <tr id={{i}}>
+                            <th value={{i.idPaciente}}>{{i.idPaciente}}</th>
+                            <td value={{i.id_usuario}}>{{i.id_usuario}}</td>
+                            <td value={{i.diabetes}}>{{i.diabetes}}</td>
+                            <td value={{i.hipertencion}}>{{i.hipertencion}}</td> 
+                            <td value={{i.telegram_paciente}}>{{i.telegram_paciente}}</td>
+                          </tr>
+                              {% endfor %} 
+                        </tbody>
+                    </table>
+
+
+
+
+
+
+
+
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+
+
+
+
+
+                    <table class="table" >
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Rut</th>
+                            <th scope="col">Tipo Profesional</th>
+                            <th scope="col">Institucion  </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                             {% for i in profesional %}        
+                            
+                          <tr id={{i}}>
+                            <th value={{i.idPaciente}}>{{i.id_profesional}}</th>
+                            <td value={{i.rut_profesional}}>{{i.rut_profesional}}</td>
+                            <td value={{i.tipo_profesional}}>{{i.tipo_profesional}}</td>
+                            <td value={{i.institucion_id}}>{{i.institucion_id}}</td>
+                          </tr>
+                              {% endfor %} 
+                        </tbody>
+                    </table> 
+
+
+
+
+
+
+
+                </div>
+              </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+            {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudilogo' %}
+            <div id="banner-wrapper">
+                <div id="banner" class="box container">
+                    <div class="row">
+                        <div class="col-7 col-12-medium">
+                            <h2>Hola!, {{user_type}} {{request.user.first_name}} </h2>
+                            <p>Recete medicina, citas online, seguimiento de pacientes <br> Todo esto y mas sin salir de tu hogar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="container" style="margin-top:3rem;">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Mis Pacientes</button>
+                    </li>
+    
+                  </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    
+
+                        <table class="table" >
+                            <thead>
+                              <tr>
+                                <th scope="col">Id Username</th>
+                                <th scope="col">Telegram</th>
+                                <th scope="col">Diabetes</th>
+                                <th scope="col">Hipertencion</th>
+                                <th scope="col">Observacion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                 {% for i in pacientes %}        
+                                
+                              <tr id={{i}}>
+                                <th value={{i.id_prof_paci}}>{{i.id_paciente}}</th>
+                                <td value={{i.descripcion}}>{{i.id_paciente.telegram_paciente}}</td>
+                                <td value={{i.id_paciente}}>{{i.id_paciente.diabetes}}</td>
+                                <td value={{i.id_paciente}}>{{i.id_paciente.hipertencion}}</td>
+                                <td value={{i.id_paciente}}>{{i.id_paciente.Observacion}}</td>
+            
+                              </tr>
+                                  {% endfor %} 
+                            </tbody>
+                        </table> 
+            
+
+
+                    </div>
+                </div>
+            </div>    
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {%  elif user_type == 'Familiar'%}
+            <div id="banner-wrapper">
+                <div id="banner" class="box container">
+                    <div class="row">
+                        <div class="col-7 col-12-medium">
+                            <h2>Hola!, Bienvenido {{request.user.first_name}}</h2>
+                            <p>Tu Familiar: Paciente04 <br> Esta Super bien</p>
+                        </div>
+                        <div class="col-5 col-12-medium">
+                            <img class="image fit" src="static/app/recursos/img/imagen-banner.jpg" alt="imagen-banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%else%}
+            <div id="banner-wrapper">
+                <div id="banner" class="box container">
+                    <div class="row">
+                        <div class="col-7 col-12-medium">
+                            <h2>Hola!, Bienvenido a tú terapia Online</h2>
+                            <p>Jamás fue tan Sencilla, entretenida y comoda. <br> Todo esto y mas sin salir de tu hogar</p>
+                        </div>
+                        <div class="col-5 col-12-medium">
+                            <img class="image fit" src="static/app/recursos/img/imagen-banner.jpg" alt="imagen-banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Features -->
+            <div id="features-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4 col-12-medium">
+                            <section class="box feature">
+                                <a href="#" class="image featured"><img src="static/app/recursos/img/pic01.jpg" alt="" /></a>
+                                <div class="inner">
+                                    <header>
+                                        <h2>Disfruta de juegos para ayudar a tu memoria</h2>
+                                        <p>Estimula tu cerebro</p>
+                                    </header>
+                                    <p>Estimula tu cerebro con un divertido juego de tarjetas donde podras personalizar las imagenes para que te sientas a gusto.</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-4 col-12-medium">
+                            <section class="box feature">
+                                <a href="#" class="image featured"><img src="static/app/recursos/img/pic02.jpg" alt="" /></a>
+                                <div class="inner">
+                                    <header>
+                                        <h2>Realiza los test de fonoaudiologia que tu especialista solicite</h2>
+                                        <p>Ejercita tu voz</p>
+                                    </header>
+                                    <p>nose que poner aqui.</p>
+                                </div>
+                            </section>
+
+                        </div>
+                        <div class="col-4 col-12-medium">
+
+
+                            <section class="box feature">
+                                <a href="#" class="image featured"><img src="static/app/recursos/img/pic03.jpg" alt="" /></a>
+                                <div class="inner">
+                                    <header>
+                                        <h2>Consejos de bienestar cada vez que inicies sesión</h2>
+                                        <p>Contesta una pequeña y facil encuesta</p>
+                                    </header>
+                                    <p>Al ingresar a tu sesion recibiras una encuenta con una facil pregunta y al finalizar recibe un agradable consejo que puede cambiar tu dia positivamente.</p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

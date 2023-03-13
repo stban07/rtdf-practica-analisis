@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>RTDParkinsón</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'app/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/main.css' %}" />
+</head>
+
+<body class="is-preload homepage">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <div id="header-wrapper">
+            <header id="header" class="container">
+
+                {% if request.user.is_superuser %}
+                <!-- Logo -->
+                <div id="logo">
+                    <h1><a href="{% url 'index' %}">RTDF</a></h1>
+                </div>
+                {%  else  %}
+                <div id="logo">
+                    <h1><a href="{% url 'index' %}">RTDF</a></h1>
+                    <span>Recursos Terapeuticos Digitales Para Fonoaudiologia</span>
+                </div>
+                {% endif %}
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        {% if user_type == 'Paciente' %}
+                        <li class="current">
+                            <a href="{% url 'logout' %}">Cerrar Sesion</a>
+                            <li><a href="{% url 'vocalizacion' %}">Vocalización</a></li>
+                            <li><a href="{% url 'intensidad' %}">Intensidad</a></li>
+                        </li>
+                        <li>
+                            <a href="">{{ user.username}}</a>
+                        </li>
+                        {%  elif request.user.is_superuser%}
+                        <li class="current">
+                            <li><a href="{% url 'update_csv_view' %}">Analisis</a></li>
+                            <li><a href="{% url 'rasati' %}" >RASATI</a></li>
+                            <li><a href="{% url 'grbas' %}" >GRBA</a></li>
+                            <li><a href="{% url 'grbas' %}" >ESV</a></li>
+                            <li><a href="{% url 'registro' %}" >Registrar Usuarios</a></li>
+                            <li><a href="{% url 'preregistrados' %}" >Usuarios Pre-Registrados</a></li>
+                            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+                        </li>
+                        {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudilogo' %}
+                        <li class="current">
+                            <li><a href="{% url 'grbas' %}" >GRBA</a></li>
+                            <li><a href="{% url 'rasati' %}" >RASATI</a></li>
+                            <li><a href="{% url 'grbas' %}" >ESV</a></li>
+                            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+                        </li>
+                        {%  elif user_type == 'Familiar'%}
+                        <li class="current">
+                            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+                        </li>
+                        {%  else %}
+                        <li class="current">
+                            <a href="{% url 'login' %}">Iniciar sesion</a>
+                            <li><a href="{% url 'preregistro' %}">Pre-Registro</a></li>
+                        </li>
+                        {% endif %}
+
+
+                        <!-- <li class="current"><a href="{% url 'login' %}">Iniciar Sesion</a></li> -->
+                        {% comment %} <li><a href="">Recursos</a>
+                            <ul>
+                                <li><a href="{% url 'vocalizacion' %}">Vocalización</a></li>
+                                <li><a href="{% url 'intensidad' %}">Intensidad</a></li>
+                                <li><a href="{% url 'oscilograma' %}">Oscilograma</a></li> {% endcomment %}
+
+
+
+
+
+                        <!-- <li><a href=" ">Perfil</a>
+
+                        <li class="current"><a href=" ">Cerrar sesión</a></li> -->
+
+                        <!-- INTERFAZ ADMINISTRADOR / ESPECIALISTA -->
+                        <!--    <li><a href=" ">Perfil</a></li>
+                                    <li class="current"><a href=" ">Pacientes</a></li>
+                                    <li><a href=" ">Pruebas</a></li>
+                                    <li class="current"><a href=" ">Cerrar sesión</a></li> -->
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <!-- AQUI VA EL CONTENIDO -->
+        <div class="container-wrapper">
+            {% block contenido %}
+
+            {% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="col-3 col-6-medium col-12-small">
+                        <!-- Links -->
+                        <section class="widget links">
+                            <h3>Random Stuff</h3>
+                            <ul class="style2">
+                                <li><a href="#">Etiam feugiat condimentum</a></li>
+                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                        <!-- Links -->
+                        <section class="widget links">
+                            <h3>Random Stuff</h3>
+                            <ul class="style2">
+                                <li><a href="#">Etiam feugiat condimentum</a></li>
+                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                        <!-- Links -->
+                        <section class="widget links">
+                            <h3>Random Stuff</h3>
+                            <ul class="style2">
+                                <li><a href="#">Etiam feugiat condimentum</a></li>
+                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                        <!-- Contact -->
+                        <section class="widget contact last">
+                            <h3>Contactanos</h3>
+                            <ul>
+                                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a>
+                                </li>
+                                <li><a href="#" class="icon brands fa-facebook-f"><span
+                                            class="label">Facebook</span></a></li>
+                                <li><a href="#" class="icon brands fa-instagram"><span
+                                            class="label">Instagram</span></a></li>
+                            </ul>
+                            <p>1234 Fictional Road<br />
+                                Nashville, TN 00000<br />
+                                (800) 555-0000</p>
+                        </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="copyright">
+                            <ul class="menu">
+                                <li>&copy; Untitled.Todos los derechos reservados</li>
+                                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <!-- SEGUNDO ELEMENTO SONOMETRO -->
+
+
+
+    <!-- PLANTILLA BASE -->
+    <script src="{% static 'app/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'app/js/browser.min.js' %}"></script>
+    <script src="{% static 'app/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'app/js/util.js' %}"></script>
+    <script src="{% static 'app/js/main.js' %}"></script>
+
+    {% block js%}
+    {% endblock %}
+</body>
+
+</html>

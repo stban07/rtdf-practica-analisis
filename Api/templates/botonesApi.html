@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="container text-center mt-5">
+    <h1>Tipo de Audio</h1><br><br>
+   <div>
+    <a href="{% url 'audiosIntensidad' %}" button type="button" class="btn btn-primary" >Intensidad</button> </a>
+    <a href="{% url 'audiosVocalizacion' %}" button type="button" class="btn btn-primary" >Vocalizacion</button> </a>
+   </div> 
+</div>
+
+
+{% endblock %}  

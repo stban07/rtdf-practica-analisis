@@ -1,0 +1,103 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+
+{% block css%}
+
+{% endblock %}
+
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'app/css/medidor-sonido.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/fontawesome-all.min.css' %}">
+<!-- MEDIDOR DE SONIDO -->
+
+<div class="contenedor-text">
+    <p class="text-principal">
+        Para iniciar el medidor de sonido, presione el botón play (el botón pausa pausa hace una pausa
+        mientras que
+        el botón cancelar reinicia todo). Se le pedirá que dé permiso para que el programa acceda al micrófono de su
+        dispositivo. El número central proporciona una estimación aproximada del nivel de volumen instantáneo presente
+        en la
+        habitación con cualquier valor inferior a 40 dB que indica una habitación muy silenciosa. La lectura de dB es
+        aproximada
+        principalmente porque el micrófono en sí no está calibrado con sensibilidad/ganancia muy inconsistente entre
+        diferentes
+        dispositivos. El color de la caja también da una idea de cuán silenciosa es la habitación:
+    </p>
+</div>
+
+<div class="seccion-medidor">
+    <div class="contenedor-db">
+        <div class="cols">
+            <div class="cols">
+                <div class="bloque-1">
+                    <div>
+                        <div class="col-1">
+                            <div id="readout">118 dB</div>
+                            <div id="meter-controls">
+                                <div class="flex">
+                                    <a id="play" href="#"><i class=" material-icons">
+                                            <font size="+3">play_arrow</font>
+                                        </i></a>
+                                    <a id="pause" href="#"><i class=" material-icons">
+                                            <font size="+3">pause</font>
+                                        </i></a>
+                                    <a id="reset" href="#"><i class=" material-icons">
+                                            <font size="+3">cancel</font>
+                                        </i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div id="meter-info">
+                            <div class="contenido-info">
+                                <div id="label-average">AVG</div>
+                                <div id="average" onclick="ResetAverage()">111.4</div>
+                            </div>
+                            <div class="contenido-info">
+                                <div id="label-hold-max">MAX</div>
+                                <div id="hold-max" onclick="ResetHoldMax()">125.9</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bloque-2">
+                <div>
+                    <div class="col-3">
+                        <div class="contentCollapse">
+                            <p><strong>Utilizar con PRECAUCIÓN <br>y sólo si usted tiene una herramienta de
+                                    calibración.</strong></p>
+                            
+                            <div class="btn-calibrador">
+                                <button class="calibration-btn calibrate-up pull-right">+</button>
+                                <button class="calibration-btn calibration-down pull-left">-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="valores-text">
+        <p>
+            <p><strong>•<font color="green">Verde</font> : </strong>Cualquier valor inferior a 40 dB. Puntuación: Excelente</p>
+            <p><strong>•<font color="blue">Azul</font> : </strong>Niveles de sonoridad entre 40 - 50 dB. Puntuación: Buena</p>
+            <p><strong>•<font color="orange">Naranja</font> : </strong>Nivel de sonoridad entre 50 - 60 dB. Puntuación: no buena</p>
+            <p><strong>•<font color="red">Rojo</font> : </strong>Valor superior a 60 dB. Puntuación: Pobre</p>
+        </p>
+    </div>
+</div>
+
+
+
+{% block js %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="{% static 'app/js/medidor-sonido.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

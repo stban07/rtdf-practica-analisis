@@ -1,0 +1,104 @@
+.cont-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.saludo{
+    width: 60%;
+    margin-top: 10px;
+    color: #000;
+    font-size: 20px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 5px 5px 5px 5px;
+    font-weight: bold;
+}
+
+.lista{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+}
+
+.list-cont{
+    background-color: rgba(185, 188, 191, 0.696);
+    width: 70%;
+    margin-top: 10px;
+    font-size: 18px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 5px 5px 5px 5px;
+    color: #000;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.list-cont ul li{
+    justify-content: center;
+    text-align: center;
+    /* border: solid 1px red; */
+    width: 100%;
+    
+}
+.list-cont ul{
+    display: block;
+    margin: 15px;
+    width: 200px;  
+}
+.list-cont .cont-ul{
+    max-width: 100%;
+    display: flex;
+}
+.cont-palabras{
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.cont-form-pad{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    /* border: solid 1px red; */
+}
+
+.cont-form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    width: 60%;
+}
+.formulario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.tiempo{
+    display: flex;
+}
+
+.tiempo p{
+    margin-top: 35px;
+
+    color:#000;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.start-stop{
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    background-color: rgb(179, 72, 23);
+}

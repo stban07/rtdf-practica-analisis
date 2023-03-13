@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- HEAD -->
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            display: inline-block;
+            position: relative;
+            border-radius: 8px;
+        }
+
+            li {
+                float: left;
+        }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                border-radius: 8px;
+        }
+        label {
+            color: white;
+            vertical-align: top;
+        }
+        table {
+            margin: 0 auto;
+            width: 95%;
+        }
+
+        td, th {
+            color: white;
+            border: 3px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body style="background-color:darkslategrey;">
+    <h1 style="color: white;">{{title}}</h1>
+    <menu>
+        <li title="Volver"><a href="{% url 'index' %}">Volver a la app</a></li>
+        <li title="Actualizar CSV Histórico"><a href="{% url 'update_csv_view' %}">Actualizar CSV Histórico</a></li>
+        <li title="CSV Histórico"><a href="{% url 'historical' %}">CSV Histórico</a></li>
+        <li title="Gráfico por hora del día"><a href="{% url 'hourly_graph' %}">Gráfico por hora del día</a></li>
+        <li title="Gráfico Histórico"><a href="{% url 'historical_graph' %}">Gráfico Histórico</a></li>
+        <li title="Informe Paciente"><a href="{% url 'user_list' %}">Informe Paciente</a></li>
+        <li title="Subir un audio"><a href="{% url 'upload_file' %}">Subir un audio</a></li>
+        <li title="CSV Web"><a href="{% url 'web_historical' %}">CSV Web</a></li>
+    </menu>
+<div><br>
+  <div>
+    {% block content %}{% endblock content %}
+  </div>
+</div>
+{% block js %}{% endblock js %}
+</body>
+</html>

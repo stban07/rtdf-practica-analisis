@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static%}
+{% load crispy_forms_tags %}
+
+{% block css%}
+
+{% endblock %}
+
+
+{% block contenido %}
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistro.css' %}">
+<script src="{% static 'app/js/preregistro.js' %}"></script>
+
+<div  id="rutvalidate">
+      <label>Rut</label>
+        <input type="text" id="rut-input" >
+        <button onclick="clickRut()">Siguiente
+        </button>
+</div>
+
+
+
+
+
+<div id="formulario">
+        <form method="post" id="mi-formulario">
+          {% csrf_token %}
+          {{ form.rut.label_tag }}
+          {{ form.rut }}
+          {{ form.nombre.label_tag }}
+          {{ form.nombre }}
+          {{ form.apellido.label_tag }}
+          {{ form.apellido }}
+          {{ form.email.label_tag }}
+          {{ form.email }}
+          {{ form.telefono.label_tag }}
+          {{ form.telefono }}
+          <div style="visibility: hidden;">
+            {{ form.tipo_user.label_tag }}
+            {{ form.tipo_user }}
+          </div>
+
+          <input type="submit" value="Enviar">
+        </form>
+    
+    </div>   
+
+
+
+{% comment %} {% endif %} {% endcomment %}
+
+{% endblock %}

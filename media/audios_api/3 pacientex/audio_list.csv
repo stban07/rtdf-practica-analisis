@@ -1,0 +1,2 @@
+id_audio,Nombre archivo,Timestamp,Fecha de calculo,F0,F1,F2,F3,F4,Intensidad,HNR,Local Jitter,Local Absolute Jitter,Rap Jitter,ppq5 Jitter,ddp Jitter,Local Shimmer,Local db Shimmer,apq3 Shimmer,aqpq5 Shimmer,apq11 Shimmer,dda Shimmer
+1,E1_22-29-57_intensidad.wav,2023-03-06 22:29,2023-03-08 03:17,110.2,575.3,1640.1,2650.5,3599.7,46.4,-1.82,0.045366,0.000413,0.028234,0.025966,0.084703,0.217118,1.752336,0.106515,0.123084,0.193378,0.319544

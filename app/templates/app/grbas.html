@@ -1,0 +1,155 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+
+{% block css%}
+
+{% endblock %}
+{% block contenido %}
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
+
+<script src="{% static 'app/js/jquery-3.6.1.min.js ' %}"></script>
+
+<!-- CONTENIDO principal -->
+
+
+
+
+
+
+
+
+
+<div style="width:100%; display:flex; justify-content:center; margin:5px;">
+
+<main class="form-signin">
+
+  {% if request.user.is_superuser %}
+  {% else %}
+
+    <div class="col-8">
+      <h4>Pacientes</h4>
+      <select name="pacientes" id="pacientes" style="width:100%;">
+        
+        {% for x in paciente %}        
+        <option value="{{x}}" id="{{x}}">{{x}}</option>
+        {% endfor %} 
+      </select>
+    </div>
+
+
+
+  
+
+<form id="mi-formulario" action="" method="post" style="margin-top:5rem;">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-6">
+        {{ formulario.G.label_tag }} {{ formulario.G }}
+      </div>
+      <div class="col-6">
+        {{ formulario.R.label_tag }} {{ formulario.R }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        {{ formulario.B.label_tag }} {{ formulario.B }}
+      </div>
+      <div class="col-6">
+        {{ formulario.A.label_tag }} {{ formulario.A }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        {{ formulario.S.label_tag }} 
+        {{ formulario.S }}
+     
+      </div>
+
+      <div class="col-6">
+        {{ formulario.id_paciente }}
+        {{ formulario.id_fonoaudilogo }}
+     
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        {{ formulario.Comentario.label_tag }}
+        {{ formulario.Comentario }}
+      </div>
+    </div>
+ 
+
+  {% endif%}
+
+
+
+
+
+  {% if request.user.is_superuser %}
+
+  {% else %}
+<div  class="centerbtn" style="  display: flex;
+justify-content: end; margin-top:5rem;">
+
+<button type="submit" value="Enviar">REGISTRAR</button>
+
+
+ </div>  
+
+
+ {% endif%}
+ </form>
+
+
+
+    <h4 style="margin-top:5rem;">Historico de GRBAS ingresados</h4>
+    <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">G</th>
+            <th scope="col">R</th>
+            <th scope="col">B</th>
+            <th scope="col">A</th>
+            <th scope="col">S</th>
+            <th scope="col">Comentario</th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for i in form %}        
+            
+          <tr id={{i.id}}>
+            <th value={{i.id}}>{{i.id}}</th>
+            <th value={{i.id_paciente}}>{{i.id_paciente}}</th>
+            <td value={{i.G}}>{{i.G}}</td>
+            <td value={{i.R}}>{{i.R}}</td>
+            <td value={{i.B}}>{{i.B}}</td>
+            <td value={{i.A}}>{{i.A}}</td> 
+            <td value={{i.S}}>{{i.S}}</td>
+            <td value={{i.Comentario}}>{{i.Comentario}}</td>
+          </tr>
+{% endfor %} 
+        </tbody>
+    </table>
+
+  </main>
+</div>  
+
+
+<script src="{% static 'app/js/grbas.js' %}"></script>
+
+
+
+
+{% endblock %}
+
+
+
+
+

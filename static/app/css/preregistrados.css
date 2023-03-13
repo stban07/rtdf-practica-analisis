@@ -1,0 +1,32 @@
+/* form input {
+  }
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.centerbtn{
+  display: flex;
+  justify-content: end;
+}
+
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 576px) {
+  .form-group {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}

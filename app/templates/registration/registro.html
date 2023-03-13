@@ -1,0 +1,72 @@
+{% extends 'app/base.html' %}
+{% load static%}
+{% load crispy_forms_tags %}
+
+{% block css%}
+
+{% endblock %}
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'app/css/metronomo.css' %}">
+<link rel="stylesheet" href="{% static 'app/css//main.css' %}">
+<script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
+
+<!-- CONTENIDO principal -->
+
+
+
+
+
+<div style="width:100%; display:flex; justify-content:center; margin:5px;">
+
+<main class="form-signin w-100 m-auto">
+
+
+
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form | crispy}}
+      <input type="submit" value="Enviar">
+    </form>
+
+
+
+
+  </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+
+<script src="{% static 'app/js/jquery.min.js' %}"></script>
+<script src="{% static 'app/js/jquery.dropotron.min.js' %}"></script>
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+
+{% block css%}
+
+{% endblock %}
+
+{% block contenido %}
+<!-- SONOMETRO -->
+
+<link rel="stylesheet" href="{% static 'app/css/sonometro.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/fontawesome-all.min.css' %}">
+<!-- Saludo principal -->
+<body onload="main()">
+    
+
+<div class="page-wrapper">
+    <div class="container-padre">    
+        <div class="saludo">
+            <div class="Bienvenida">
+                <h2>Bienvenido</h2>
+                <p>Buenos días, bienvenido a tu sesión de ejercitación.</p>
+            </div>
+        </div>
+        <!-- sonometro -->
+        <div class="container-sonometro">
+            <div class="sonometro">
+                <section class="canvas-cont">
+                    <canvas id="myCanvas"></canvas>
+                </section>
+            </div>
+        </div>
+        <div class="saludo">
+            <div class="Bienvenida">
+                <h2>Recuerda</h2>
+                <p>Recuerda las indicaciones de tu fonoadilogo/a</p>
+            </div>
+        </div>
+    </div>
+
+
+
+{% block js %}
+<script src="{% static 'app/js/sonometro.js' %}"></script>
+
+{% endblock %}
+
+
+</body>
+
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'app/base.html' %}
+{% load static%}
+{% load crispy_forms_tags %}
+
+{% block css%}
+
+{% endblock %}
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'app/css/metronomo.css' %}">
+<link rel="stylesheet" href="{% static 'app/css//main.css' %}">
+<script src="{% static 'app/js/jquery-3.6.1.min.js ' %}"></script>
+
+<!-- Saludo principal -->
+<div class="container-padre">
+
+<div style="">
+        <div class="saludo">
+            <div class="Bienvenida">
+                <h2>Bienvenido</h2>
+
+                <p style="color:#000000;"><strong>Buenos días, Esta semana debes trabajar con BPM, Recuerde ajustar muy bien su tiempo y BPM</strong></p>
+            </div>
+        </div>
+
+        <div class="saludo2">
+            <div class="Bienvenida">
+                <h2>Recuerda</h2>
+                <p style="color:#000000"><strong>Al Ejercitar, debes respirar por la nariz y  tus ejercicios deben durar 5 minutos aproximadamente</strong></p>
+            </div>
+        </div>
+</div>
+
+
+
+    <!-- metronomo -->
+    <div class="container-metronome">
+        <div class="metronome">
+            <div>
+                <div class="bpm-display">
+                    <span class="tempo">140</span>
+                    <span class="bpm">BPM</span>
+                </div>
+                <div class="tempo-text">Nice and steady</div>
+                <div class="tempo-settings">
+                    <div class="adjust-tempo-btn decrease-tempo">-</div>
+                    <input type="range" min="20" max="280" step="1" class="slider">
+                    <div class="adjust-tempo-btn increase-tempo">+</div>
+                </div>
+            </div>
+            <div class="controlador">
+
+                <button onclick="clickAudio(false)" id="start_stop" class="start-stop">COMENZAR EJERCITACIÓN</button>
+                <form method="POST" id="post-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div id="tiempo" >
+                        <h3>La grabacion terminara automaticamente en<p id="segundos">{{6}}</p>segundos</h3>
+                    </div>
+                </form>
+                <div class="measures">
+                    <div class="subtract-beats stepper">-</div>
+                    <div class="measure-count">4</div>
+                    <div class="add-beats stepper">+</div>
+                </div>
+                <span class="beats-per-measure-text">Beats per measure</span>
+                <div>
+
+                    <p class="duracion" id="duracion">--Duración--</p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="container-mic" style="display:none;">
+    <div class="selector-audio">
+        <select name="listaDeDispositivos" id="listaDeDispositivos"></select>
+    </div>
+    <div class="audio">
+        <audio controls playsinline></audio>
+    </div>
+
+    <hr>
+</div>
+
+<br>
+<br>
+<br>
+
+
+<script src="{% static 'app/js/RecordRTC.js' %}"></script>
+<script src="https://unpkg.com/wavefile"></script>
+<script src="{% static 'app/js/microfono_utils.js' %}?1"></script>
+<script src="{% static 'app/js/metronomo.js' %}"></script>
+<script src="{% static 'app/js/jquery.min.js' %}"></script>
+<script src="{% static 'app/js/jquery.dropotron.min.js' %}"></script>
+
+
+
+{% endblock %}
