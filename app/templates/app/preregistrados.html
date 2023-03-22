@@ -8,7 +8,7 @@
 {% block contenido %}
 <link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
 <script src="{% static 'app/js/preregistrados.js' %}"></script>
-<script src="{% static 'app/js/jquery-3.6.1.min.js ' %}"></script>
+<script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
 
 <!-- CONTENIDO principal -->
 
@@ -83,7 +83,7 @@
 justify-content: end; margin-top: 3rem;">
 <button type="button" class=" btn-secondary btn-sm">MODIFICAR</button>
 <button type="submit" value="Enviar">REGISTRAR</button>
- </div>  
+ </div>
 
   </form>
 
@@ -109,8 +109,8 @@ justify-content: end; margin-top: 3rem;">
             <td value={{i.nombre}}>{{i.nombre}}</td>
             <td value={{i.apellido}}>{{i.apellido}}</td>
             <td value={{i.tipo_user}} id="useer">{{i.tipo_user}}</td>
-            <td  value={{i.email}}>{{i.email}}</td> 
-            <td> 
+            <td  value={{i.email}}>{{i.email}}</td>
+            <td>
             <span onclick="clickpreregistrados({{i.id}})">
               <i  cli class="icono far fa-check-circle" style="color:green;"></i>
            </span>
@@ -121,7 +121,7 @@ justify-content: end; margin-top: 3rem;">
     </table>
 
   </main>
-</div>  
+</div>
 
 
 

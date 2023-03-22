@@ -1,0 +1,21 @@
+<table class="table" >
+            <thead>
+              <tr>
+                <th scope="col">Paciente</th>
+                <th scope="col">N° Audios</th>
+                <th scope="col">Mas información</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                 {% for p in pacientes %}
+
+              <tr id={{i}}>
+                <th value={{p.username}}>{{p.username}} ({{p.first_name}} {{p.last_name}})</th>
+                <td value={{p.count}}>{{p.count}}</td>
+                <td value={{p.id}}><button type="button" onclick="Form_coeficiente('{{p.id}}')" class="btn btn-primary">Coeficientes</button></td>
+
+              </tr>
+                  {% endfor %}
+            </tbody>
+</table>

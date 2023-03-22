@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class CustomUserCreationForm(UserCreationForm):
-    
+
     class Meta(UserCreationForm.Meta):
         model = Usuario
         fields =  ('email','username', 'first_name', 'last_name', 'id_tipo_user', 'password1', 'password2','rut')
@@ -26,15 +26,19 @@ class GrbasFrom(forms.ModelForm):
     class Meta():
         model = Grbas
         fields = ('id_fonoaudilogo','id_paciente','G','R','B','A','S','Comentario')
-        
-        
-        
-        
+
+
+
+
 class RasatiFrom(forms.ModelForm):
     class Meta():
         model = Rasati
         fields = ('id_fonoaudilogo','id_paciente','R','A','S','A','T','I','Comentario')
 
+class CoeficientesForm(forms.ModelForm):
+    class Meta():
+        model = AudiosCoeficientes_Fono
+        fields= ("idusuario","nombre_archivo", "timestamp","Intensidad","F0","F1","F2","F3","F4","Intensidad","HNR","Local_Jitter","Local_Absolute_Jitter","Rap_Jitter","ppq5_Jitter","ddp_Jitter","Local_Shimmer","Local_db_Shimmer","apq3_Shimmer","aqpq5_Shimmer","apq11_Shimmer")
 
 
 # class MemoriceForm(forms.ModelForm):

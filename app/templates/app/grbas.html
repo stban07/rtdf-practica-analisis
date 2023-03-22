@@ -8,7 +8,7 @@
 {% block contenido %}
 <link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
 
-<script src="{% static 'app/js/jquery-3.6.1.min.js ' %}"></script>
+<script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
 
 <!-- CONTENIDO principal -->
 
@@ -30,16 +30,16 @@
     <div class="col-8">
       <h4>Pacientes</h4>
       <select name="pacientes" id="pacientes" style="width:100%;">
-        
-        {% for x in paciente %}        
+
+        {% for x in paciente %}
         <option value="{{x}}" id="{{x}}">{{x}}</option>
-        {% endfor %} 
+        {% endfor %}
       </select>
     </div>
 
 
 
-  
+
 
 <form id="mi-formulario" action="" method="post" style="margin-top:5rem;">
     {% csrf_token %}
@@ -63,15 +63,15 @@
 
     <div class="row">
       <div class="col-6">
-        {{ formulario.S.label_tag }} 
+        {{ formulario.S.label_tag }}
         {{ formulario.S }}
-     
+
       </div>
 
       <div class="col-6">
         {{ formulario.id_paciente }}
         {{ formulario.id_fonoaudilogo }}
-     
+
       </div>
 
     </div>
@@ -82,7 +82,7 @@
         {{ formulario.Comentario }}
       </div>
     </div>
- 
+
 
   {% endif%}
 
@@ -99,7 +99,7 @@ justify-content: end; margin-top:5rem;">
 <button type="submit" value="Enviar">REGISTRAR</button>
 
 
- </div>  
+ </div>
 
 
  {% endif%}
@@ -122,24 +122,24 @@ justify-content: end; margin-top:5rem;">
           </tr>
         </thead>
         <tbody>
-             {% for i in form %}        
-            
+             {% for i in form %}
+
           <tr id={{i.id}}>
             <th value={{i.id}}>{{i.id}}</th>
             <th value={{i.id_paciente}}>{{i.id_paciente}}</th>
             <td value={{i.G}}>{{i.G}}</td>
             <td value={{i.R}}>{{i.R}}</td>
             <td value={{i.B}}>{{i.B}}</td>
-            <td value={{i.A}}>{{i.A}}</td> 
+            <td value={{i.A}}>{{i.A}}</td>
             <td value={{i.S}}>{{i.S}}</td>
             <td value={{i.Comentario}}>{{i.Comentario}}</td>
           </tr>
-{% endfor %} 
+{% endfor %}
         </tbody>
     </table>
 
   </main>
-</div>  
+</div>
 
 
 <script src="{% static 'app/js/grbas.js' %}"></script>

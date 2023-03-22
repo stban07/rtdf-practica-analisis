@@ -50,10 +50,13 @@
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Profesionales Salud</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#coefficients" type="button" role="tab" aria-controls="coefficients" aria-selected="false">Coeficientes Pacientes</button>
+                </li>
               </ul>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    
+
 
 
 
@@ -69,26 +72,26 @@
                           </tr>
                         </thead>
                         <tbody>
-                             {% for i in usuarios %}        
-                            
+                             {% for i in usuarios %}
+
                           <tr id={{i}}>
                             <th value={{i.id}}>{{i.id}}</th>
                             <td value={{i.username}}>{{i.username}}</td>
                             <td value={{i.email}}>{{i.email}}</td>
-                            <td value={{i.rut}}>{{i.rut}}</td> 
+                            <td value={{i.rut}}>{{i.rut}}</td>
                             <td value={{i.id_tipo_user}}>{{i.id_tipo_user}}</td>
                             <td value={{i.I}}>{{i.I}}</td>
                             <td value={{i.Comentario}}>{{i.Comentario}}</td>
                           </tr>
-                              {% endfor %} 
+                              {% endfor %}
                         </tbody>
                     </table>
-                
 
 
 
 
-                    
+
+
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
@@ -109,16 +112,16 @@
                           </tr>
                         </thead>
                         <tbody>
-                             {% for i in paciente %}        
-                            
+                             {% for i in paciente %}
+
                           <tr id={{i}}>
                             <th value={{i.idPaciente}}>{{i.idPaciente}}</th>
                             <td value={{i.id_usuario}}>{{i.id_usuario}}</td>
                             <td value={{i.diabetes}}>{{i.diabetes}}</td>
-                            <td value={{i.hipertencion}}>{{i.hipertencion}}</td> 
+                            <td value={{i.hipertencion}}>{{i.hipertencion}}</td>
                             <td value={{i.telegram_paciente}}>{{i.telegram_paciente}}</td>
                           </tr>
-                              {% endfor %} 
+                              {% endfor %}
                         </tbody>
                     </table>
 
@@ -147,17 +150,55 @@
                           </tr>
                         </thead>
                         <tbody>
-                             {% for i in profesional %}        
-                            
+                             {% for i in profesional %}
+
                           <tr id={{i}}>
                             <th value={{i.idPaciente}}>{{i.id_profesional}}</th>
                             <td value={{i.rut_profesional}}>{{i.rut_profesional}}</td>
-                            <td value={{i.tipo_profesional}}>{{i.tipo_profesional}}</td>
+                            <td value={{i.tipo_profesional}}>{{i.id_usuario}}</td>
                             <td value={{i.institucion_id}}>{{i.institucion_id}}</td>
                           </tr>
-                              {% endfor %} 
+                              {% endfor %}
                         </tbody>
-                    </table> 
+                    </table>
+
+
+
+
+
+
+
+                </div>
+                <div class="tab-pane fade" id="coefficients" role="tabpanel" aria-labelledby="coefficients-tab">
+
+
+
+
+
+                    <h2>Audios Totales: {{conteo}}</h2>
+                    <table class="table" >
+                        <thead>
+                          <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">N° Audios</th>
+                            <th scope="col">Mas informacion</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                             {% for p in Audio_coeficiente %}
+
+                          <tr id={{i}}>
+                            <th value={{p.username}}>{{p.username}} ({{p.first_name}} {{p.last_name}})</th>
+                            <td value={{p.count}}>{{p.count}}</td>
+                            <td value={{p}}><a href="{% url 'user_info' %}?user={{ p }}" >
+                                                                <button type="button" class="btn btn-primary">Coeficientes</button>
+                                                            </a></td>
+
+                          </tr>
+                              {% endfor %}
+                        </tbody>
+                    </table>
 
 
 
@@ -180,7 +221,7 @@
 
 
 
-            {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudilogo' %}
+            {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudiólogo' %}
             <div id="banner-wrapper">
                 <div id="banner" class="box container">
                     <div class="row">
@@ -200,11 +241,11 @@
                     <li class="nav-item" role="presentation">
                       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Mis Pacientes</button>
                     </li>
-    
+
                   </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    
+
 
                         <table class="table" >
                             <thead>
@@ -217,32 +258,32 @@
                               </tr>
                             </thead>
                             <tbody>
-                                 {% for i in pacientes %}        
-                                
+                                 {% for i in pacientes %}
+
                               <tr id={{i}}>
                                 <th value={{i.id_prof_paci}}>{{i.id_paciente}}</th>
                                 <td value={{i.descripcion}}>{{i.id_paciente.telegram_paciente}}</td>
                                 <td value={{i.id_paciente}}>{{i.id_paciente.diabetes}}</td>
                                 <td value={{i.id_paciente}}>{{i.id_paciente.hipertencion}}</td>
                                 <td value={{i.id_paciente}}>{{i.id_paciente.Observacion}}</td>
-            
+
                               </tr>
-                                  {% endfor %} 
+                                  {% endfor %}
                             </tbody>
-                        </table> 
-            
+                        </table>
+
 
 
                     </div>
                 </div>
-            </div>    
+            </div>
 
 
 
 
 
 
-            
+
 
 
 

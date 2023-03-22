@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, VocalizacionView, intensidad, save_audio, LoginView, registro, vocalizacion, preregistro, buscar_rut, preregistrados, grbas,rasati
+from .views import index, VocalizacionView, intensidad, save_audio, LoginView, registro, vocalizacion, preregistro, buscar_rut, preregistrados, grbas,rasati,audios_pacientes,lista_pacientes,form_coeficientes
 
 
 
@@ -15,4 +15,7 @@ urlpatterns = [
     path('buscar_rut/', buscar_rut, name="buscar_rut"),
     path('grbas/', grbas, name="grbas"),
     path('rasati/', rasati, name="rasati"),
+    path('audios_pacientes/',audios_pacientes,name="audios_pacientes"),
+    path('lista_pacientes/',lista_pacientes,name="lista_pacientes"),
+    path('coeficientes_audio/',form_coeficientes,name="coeficientes_audio")
 ]

@@ -50,11 +50,12 @@
                             <li><a href="{% url 'preregistrados' %}" >Usuarios Pre-Registrados</a></li>
                             <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
                         </li>
-                        {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudilogo' %}
+                        {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudiólogo' %}
                         <li class="current">
                             <li><a href="{% url 'grbas' %}" >GRBA</a></li>
                             <li><a href="{% url 'rasati' %}" >RASATI</a></li>
                             <li><a href="{% url 'grbas' %}" >ESV</a></li>
+                            <li><a href="{% url 'audios_pacientes' %}" >Pacientes</a></li>
                             <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
                         </li>
                         {%  elif user_type == 'Familiar'%}

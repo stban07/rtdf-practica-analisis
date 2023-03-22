@@ -1,0 +1,6 @@
+[2023-03-08 01:06] Hubo un error al analizar el archivo E1_22-29-57_intensidad.wav del usuario 3 pacientex
+[2023-03-08 01:10] Hubo un error al analizar el archivo E1_22-29-57_intensidad.wav del usuario 3 pacientex
+[2023-03-08 01:10] Hubo un error al analizar el archivo E1_22-29-57_intensidad.wav del usuario 3 pacientex
+[2023-03-10 03:02] Hubo un error al analizar el archivo PF_02-59-55_intensidad.wav del usuario 7 paciente02
+[2023-03-10 03:02] Hubo un error al analizar el archivo rv_03-00-15_intensidad.wav del usuario 7 paciente02
+[2023-03-10 03:02] Hubo un error al analizar el archivo 7U_03-00-41_vocalizacion.wav del usuario 7 paciente02

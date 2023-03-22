@@ -1,0 +1,87 @@
+/*Start Global Style*/
+.container-wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.container-login{
+    width: fit-content;
+    text-align: center;
+    
+}
+
+.container-login .login{
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 5px 5px 5px 5px;
+    width: 700px;
+}
+
+/*Start Login Style*/
+.login{
+ 
+    background-color: #fafafa;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+    padding-top: 50px;
+}
+.login h1{
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+input[type="user"] , input[type="password"]{
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: none;
+    background-color: #eeeeef;
+}
+
+.login a{
+    display: block;
+    text-decoration: none;
+    color: #000;
+    transition: 0.3s all ease-in-out;
+}
+.login a:hover{color: #9526a9;font-weight: bold}
+.login button{
+    width: 40%;
+    margin: 30px auto;
+    padding: 10px;
+    border: none;
+    background-color: #9526a9;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.login button:hover{
+    width:42%;
+    font-size: 22px;
+    border-radius: 5px;
+    
+}
+
+.login p{
+    display: inline-block;
+    margin: 0px 10px 30px;
+}
+.login ul{
+    list-style: none;
+    margin-bottom:40px;  
+}
+.login ul li{
+    display: inline-block;
+    margin-right: 30px;
+    cursor: pointer;
+}
+.login ul li:hover{opacity: 0.6}
+.login ul li:last-child{margin-right: 0}
+.login .copyright{
+    display: inline-block;
+    float: none;
+}

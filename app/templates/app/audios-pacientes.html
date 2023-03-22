@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+{% block css%}
+
+{% endblock %}
+{% block contenido %}
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
+
+<script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
+
+<!-- CONTENIDO principal -->
+
+
+<div style="width:100%; display:flex; justify-content:center; margin:5px;">
+
+        <div id=contenido>
+            <h2>Cargando pacientes</h2>
+        </div>
+</div>
+{% endblock %}
+{% block js%}
+<script src="{% static 'app/js/lista-pacientes.js' %}?13"></script>
+{% endblock %}

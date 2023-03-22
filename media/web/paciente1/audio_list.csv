@@ -1,0 +1,2 @@
+Nombre archivo,Timestamp,Fecha de calculo,F0,F1,F2,F3,F4,Intensidad,HNR,Local Jitter,Local Absolute Jitter,Rap Jitter,ppq5 Jitter,ddp Jitter,Local Shimmer,Local db Shimmer,apq3 Shimmer,aqpq5 Shimmer,apq11 Shimmer,dda Shimmer
+20230201_A_Final.wav,2023-03-16 13:04,2023-03-16 13:17,125.5,794.0,1483.6,2838.1,3922.8,83.89,23.98,0.005457,4.3e-05,0.003017,0.003106,0.00905,0.009152,0.081834,0.004134,0.005251,0.007968,0.012403

@@ -11,10 +11,10 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.utils.crypto import get_random_string
 from datetime import datetime
-
+from app import forms
 
 from django.contrib.auth.decorators import user_passes_test
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 
 
@@ -40,25 +40,25 @@ def index(request):
         usuarios = Usuario.objects.all()
         paciente = Paciente.objects.all()
         profesional = Profesional_salud.objects.all()
+        pacientes=Usuario.objects.filter(id_tipo_user=3).annotate(count=Count('audioscoeficientes')).filter(count__gte=1)
+        total=pacientes.aggregate(total=Sum('count'))['total']
         if request.user.is_superuser:
             print(usuarios)
-            return render(request, 'app/index.html',{"user_type":user_type, "usuarios":usuarios, "paciente":paciente, "profesional":profesional} )
-        elif user_type == "Fonoaudilogo":
+            return render(request, 'app/index.html',{"user_type":user_type, "usuarios":usuarios, "paciente":paciente, "profesional":profesional,  "Audio_coeficiente": pacientes,"conteo":total} )
+        elif user_type == "Fonoaudiólogo":
+            try:
+                data = Profesional_salud.objects.filter(rut_profesional = request.user.rut)
 
-            data = Profesional_salud.objects.filter(rut_profesional = request.user.rut)
-
-            id = data.values('id_profesional').first()
-            id = id['id_profesional']
-            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud = id)
-            print(pacientes)
+                id = data.values('id_profesional').first()
+                id = id['id_profesional']
+                pacientes = Profesional_Paciente.objects.filter(id_profesional_salud = id)
+                print(pacientes)
             # id = pacientes.values('id_paciente').first()
             # print(id)
-
-
-
-            books = Profesional_Paciente.objects.prefetch_related('id_paciente').filter(id_profesional_salud = id )
-            pacientes = books
-
+            #books = Profesional_Paciente.objects.prefetch_related('id_paciente').filter(id_profesional_salud = id )
+            #pacientes = books
+            except:
+                pass
             d = Paciente.objects.all()
             print(d)
 
@@ -155,9 +155,103 @@ def rasati(request):
         else:
             print(form.errors)
 
+#vista principal para agregar audios de manera manual
+#contenedor de informacion se actualiza por medio de js
+#con peticion ajax para tener lista de pacientes y formulario de coeficientes
+@user_passes_test(validate)
+def audios_pacientes(request):
+    user_type = str(request.user.id_tipo_user)
+    return render(request,'app/audios-pacientes.html',{"user_type":user_type})
+
+@user_passes_test(validate)
+def lista_pacientes(request):
+    if request.method == 'GET':
+        user_type = str(request.user.id_tipo_user)
+        print("punto de control")
+        #posteriormete filtrar los pacientes segun quien sea el fonoaudiologo, superuser tiene vista completa
+        #if 'fonoaudiologo' in user_type or request.user.is_superuser:
+            #id_tipo_user=3 pacientes, count audios analizados por la app, filter de usuarios con uno o mas audios analizados
+        pacientes=Usuario.objects.filter(id_tipo_user=3).annotate(count=Count('audioscoeficientes')).filter(count__gte=1)
+        print(pacientes)
+        return render(request, 'app/lista-pacientes.html',{'pacientes':pacientes})
 
 
+#vista de form para añadir coeficientes a un audio
+#requiere recibir por medio de un get un id de audio
+#en caso de no tenerlo vuelve a pacientes_audios
+#posteriormente verificar que el fonoaudiologo tiene acceso a ese audio (por medio del paciente)
+@user_passes_test(validate)
+def form_coeficientes(request):
+    user_type = str(request.user.id_tipo_user)
+    if request.method == 'GET':
+        paciente=int(request.GET['paciente'])
+        first_time=True;
+        #buscamos los audios del paciente, revisamos cual tiene la id indicada y en caso contrario tomamos el primer elemento
+        #mismo funcionamiento que en analisis
+        try:
+            coef_id = int(request.GET["id"])
+            audios_coef=AudiosCoeficientes.objects.filter(idusuario=paciente,id=coef_id).values().first()
+            first_time=False;
 
+        except:
+            audios_coef=AudiosCoeficientes.objects.filter(idusuario=paciente).values()
+            if audios_coef:
+                audios_coef=audios_coef.last()
+            else:
+                return
+        #quitar los valores innecesarios para mostrar, como datos para el servidor (dejar solo valores de coeficientes)
+        audio_name=audios_coef.pop('nombre_archivo')
+        timestamp=audios_coef.pop('timestamp')
+        audios_coef.pop('idusuario_id')
+        audios_coef.pop('id')
+        #una vez tenemos el audio seleccionado revisamos en la tabla AudiosCoeficientes_Fono si ya existe la entrada para ese audio
+        #en caso de existir mostramos la comparacion con la tabla AudiosCoeficientes
+        #de no existir mostramos el formulario
+        try:
+            print(audio_name)
+            coef_fono=AudiosCoeficientes_Fono.objects.filter(nombre_archivo=audio_name).values().first()
+            print("existe")
+            keys=list(audios_coef.keys())
+            #hacemos un nuevo diccionario que contiene los valores de ambos conjuntos para compararlos
+            #solo deben quedar coeficientes, por lo que podemos operarlos para mostrar la diferencia
+            comparative_table={k:{"fono":coef_fono[k],"auto":audios_coef[k],"dif":abs(float(coef_fono[k])-(float(audios_coef[k])))} for k in keys}
+            return render(request,'app/coeficientes-manual.html',{
+                "user_type":user_type,
+                "paciente": Usuario.objects.get(id=paciente),
+                "audio_list":AudiosCoeficientes.objects.filter(idusuario=paciente).order_by('-id'),
+                "comparative_table":comparative_table,
+                "audio": '/media/'+audio_name,
+                "first_time":first_time, #first_time hace que se renderice la lista de audios, en false no se actualiza
+                "manual_exist":True      #manual_exist avisa cuando ya encuentra una entrada del fonoaudiologo
+                })
+        except Exception as e:
+            print(e)
+            form_coef=CoeficientesForm(initial={"idusuario":paciente,"nombre_archivo":audio_name,"timestamp":timestamp})
+            return render(request,'app/coeficientes-manual.html',{
+                "user_type":user_type,
+                "paciente": Usuario.objects.get(id=paciente),
+                "audio_list":AudiosCoeficientes.objects.filter(idusuario=paciente).order_by('-id'),
+                "form":form_coef,
+                "audio": '/media/'+audio_name,
+                "first_time":first_time,
+                "manual_exist":False
+                })
+    if request.method == 'POST':
+        #recibe los parametros y los guarda en la tabla audioscoeficientes_fono
+        #probablemente renderice la misma pestaña que el get, con un mensaje extra de guardado
+        print("GUARDADO")
+        data=request.POST
+        print(data)
+        print("="*50)
+        form = CoeficientesForm(data=request.POST)
+        if form.is_valid():
+
+            form.save()
+            form.clean()
+
+            return redirect('audio_pacientes')
+
+        return render(request,'app/coeficientes-manual.html',{"user_type":user_type})
 
 
 

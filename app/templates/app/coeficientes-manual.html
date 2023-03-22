@@ -1,0 +1,120 @@
+{% if first_time %}
+<button onclick="lista_pacientes()">volver</button>
+
+<h2>Paciente {{ paciente }}</h2>
+
+    <input id='paciente' value={{paciente}} type="hidden";>
+    <select id='audio-select' onchange="onchangeList()">
+        {%for row in audio_list %}
+        <option value={{row.id}}>audio {{row.nombre_archivo}}</option>
+        {% endfor %}
+    </select>
+{% endif %}
+    <div id=data>
+        <br>
+        <audio controls>
+            <source src={{ audio }} type="audio/wav">
+        </audio>
+        {%if not manual_exist %}
+            <form id="miFormulario" action="{% url 'coeficientes_audio' %}" method="post" style="margin-top:5rem;">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col">
+                        {{ form.F0.label_tag }} {{ form.F0 }}
+                    </div>
+                    <div class="col">
+                        {{ form.F1.label_tag }} {{ form.F1 }}
+                    </div>
+                    <div class="col">
+                        {{ form.F2.label_tag }} {{ form.F2 }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.F3.label_tag }} {{ form.F3 }}
+                    </div>
+                    <div class="col">
+                        {{ form.F4.label_tag }} {{ form.F4 }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.Intensidad.label_tag }} {{ form.Intensidad }}
+                    </div>
+                    <div class="col">
+                        {{ form.HNR.label_tag }} {{ form.HNR }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.Local_Jitter.label_tag }} {{ form.Local_Jitter }}
+                    </div>
+                    <div class="col">
+                        {{ form.Local_Absolute_Jitter.label_tag }} {{ form.Local_Absolute_Jitter }}
+                    </div>
+                    <div class="col">
+                        {{ form.Rap_Jitter.label_tag }} {{ form.Rap_Jitter }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.ppq5_Jitter.label_tag }} {{ form.ppq5_Jitter }}
+                    </div>
+                    <div class="col">
+                        {{ form.ddp_Jitter.label_tag }} {{ form.ddp_Jitter }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.Local_Shimmer.label_tag }} {{ form.Local_Shimmer }}
+                    </div>
+                    <div class="col">
+                        {{ form.Local_db_Shimmer.label_tag }} {{ form.Local_db_Shimmer }}
+                    </div>
+                    <div class="col">
+                        {{ form.apq3_Shimmer.label_tag }} {{ form.apq3_Shimmer }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ form.aqpq5_Shimmer.label_tag }} {{ form.aqpq5_Shimmer }}
+                    </div>
+                    <div class="col">
+                        {{ form.apq11_Shimmer.label_tag }} {{ form.apq11_Shimmer }}
+                    </div>
+                </div>
+                <div class="row" style="display:none;">
+                    <div class="col">
+                    {{ form.idusuario }}
+                    </div>
+                    <div class="col">
+                    {{ form.nombre_archivo }}
+                    </div>
+                    <div class="col">
+                    {{ form.timestamp }}
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div  class="centerbtn" style="  display: flex; justify-content: end; margin-top:5rem;">
+                    <button type="submit" value="Enviar">REGISTRAR</button>
+                </div>
+            </form>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Coeficiente</th>
+                    <th>Calculo Fonoaudiólogo</th>
+                    <th>Calculo automático</th>
+                    <th>diferencia</th>
+                </tr>
+                {% for key,row in comparative_table.items %}
+                <tr>
+                    <th>{{key}}</th>
+                    <th>{{row.fono}}</th>
+                    <th>{{row.auto}}</th>
+                    <th>{{row.dif}}</th>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
