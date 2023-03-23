@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+
 # Register your models here.
 
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -127,7 +128,7 @@ admin.site.register(TipoUsuario, TipoUserAdmin)
 
 # #PROFESIONAL PACIENTE
 class Profesional_PacienteAdmin(admin.ModelAdmin):
-     list_display = ["id_profesional_salud","id_paciente","tipo_profesional","descripcion"]
+     list_display = ["id_prof_paci","id_profesional_salud","id_paciente","tipo_profesional","descripcion"]
 admin.site.register(Profesional_Paciente, Profesional_PacienteAdmin)
 
 # #AUDIO
@@ -143,6 +144,11 @@ class AudiosCoeficientesAdmin(admin.ModelAdmin):
      list_display = ["id", "idusuario","nombre_archivo", "timestamp","Intensidad","F0","F1","F2","F3","F4","Intensidad","HNR","Local_Jitter","Local_Absolute_Jitter","Rap_Jitter","ppq5_Jitter","ddp_Jitter","Local_Shimmer","Local_db_Shimmer","apq3_Shimmer","aqpq5_Shimmer","apq11_Shimmer"]
 admin.site.register(AudiosCoeficientes,  AudiosCoeficientesAdmin)
 
+
+# coeficiente audio fono
+class AudiosCoeficientes_FonoAdmin(admin.ModelAdmin):
+     list_display = ["id", "idusuario","nombre_archivo", "timestamp","Intensidad","F0","F1","F2","F3","F4","Intensidad","HNR","Local_Jitter","Local_Absolute_Jitter","Rap_Jitter","ppq5_Jitter","ddp_Jitter","Local_Shimmer","Local_db_Shimmer","apq3_Shimmer","aqpq5_Shimmer","apq11_Shimmer"]
+admin.site.register(AudiosCoeficientes_Fono,  AudiosCoeficientes_FonoAdmin)
 
 
 # # coeficiente audio

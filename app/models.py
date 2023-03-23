@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Q
+from django.db.models import CheckConstraint, Q, F
 # Create your models here.
 ##FALTA CREAR TABLAS DE
 ###PROVINCIA-REGION(se relacionan con comuna) Y 6 TABLAS DE PACIENTE
@@ -155,12 +155,11 @@ class Profesional_salud(models.Model):
 class Profesional_Paciente(models.Model):
      id_prof_paci = models.BigAutoField(primary_key=True)
      descripcion = models.CharField(max_length=100)
-     id_profesional_salud = models.ForeignKey(Profesional_salud, on_delete=models.CASCADE,null=True)
-     id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE,null=True)
+     id_profesional_salud = models.ForeignKey(Usuario, on_delete=models.CASCADE,null=True, related_name="Rmedico",limit_choices_to=Q(id_tipo_user_id=2)| Q(id_tipo_user_id=6))
+     id_paciente = models.ForeignKey(Usuario, on_delete=models.CASCADE,null=True, related_name="Rpaciente",limit_choices_to=Q(id_tipo_user_id=3))
      tipo_profesional = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE,null=True)
      def __str__(self):
          return str(self.descripcion)
-
 
 
 
